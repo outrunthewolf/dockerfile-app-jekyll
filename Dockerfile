@@ -19,7 +19,10 @@ RUN apt-get install -y build-essential curl zlib1g-dev
 RUN \curl -L https://github.com/sstephenson/ruby-build/archive/v20130518.tar.gz | tar -zxvf - -C /tmp/
  
 # Install ruby-build
-RUN cd /tmp/ruby-build-* && ./install.sh && cd / && rm -rfv /tmp/ruby-build-master
+RUN cd /tmp/ruby-build-* && \
+	./install.sh && \
+	cd / && \ 
+	rm -rfv /tmp/ruby-build-master
  
 # Install ruby
 RUN ruby-build -v 1.9.3-p429 /usr/local
