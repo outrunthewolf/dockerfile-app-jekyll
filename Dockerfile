@@ -13,7 +13,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt
 
 # Update the box
 RUN apt-get update
-RUN apt-get install -y build-essential curl zlib1g-dev
+RUN apt-get install -y build-essential curl zlib1g-dev opensll libssl-dev
 
 # Download the ruby-build code
 RUN \curl -L https://github.com/sstephenson/ruby-build/archive/v20130518.tar.gz | tar -zxvf - -C /tmp/
@@ -25,7 +25,7 @@ RUN cd /tmp/ruby-build-* && \
 	rm -rfv /tmp/ruby-build-master
  
 # Install ruby
-RUN ruby-build -v 1.9.3-p429 /usr/local
+RUN ruby-build -v 1.9.3-p429 /usr/local --with-openssl-dir=/usr/local
  
 # Install gems
 RUN gem install rails
